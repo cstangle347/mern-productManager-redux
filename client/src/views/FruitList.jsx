@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { navigate, Link } from '@reach/router';
 
+import DeleteButton from '../components/DeleteButton';
 
 function FruitList() {
   const [fruits, setFruits] = useState([]);
@@ -11,14 +12,10 @@ function FruitList() {
       .then(res => setFruits(res.data));
   },[])
 
-  function handleDelete(id){
-    axios.delete("http://localhost:8000/api/fruits/" + id)
-      .then(() => {
-        const newList = fruits.filter(fruit => fruit._id !== id);
-
-        setFruits(newList);
-      })
-  }
+  const removeFromDom = id => {
+    const newList = fruits.filter(fruit => fruit._id !== id);
+    setFruits(newList)
+  };
 
 return (
   <table className= "table table-striped">
@@ -38,7 +35,7 @@ return (
           </td>
           <td>
             <button className="btn btn-outline-dark btn-lg" onClick={()=> navigate("/fruits/" + fruit._id + "/update")}>Update</button>{' '}
-            <button className="btn btn-outline-danger btn-lg" onClick={()=> handleDelete(fruit._id)}>Delete</button>
+            <DeleteButton id={fruit._id} successCallback={()=>removeFromDom(fruit._id)}/>
           </td>
         </tr>
       ))}

@@ -1,7 +1,5 @@
 import React from 'react';
 import './App.css';
-
-
 import { Link, Router, Redirect } from '@reach/router';
 
 import FruitList from './views/FruitList';
@@ -30,7 +28,6 @@ function App() {
         </Router>
       </div>
     </div>
-
     </>
   );
 }
