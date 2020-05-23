@@ -26,7 +26,7 @@ function App() {
           <UpdateFruit path = "fruits/:id/update" />
           <Fruit path= "fruits/:id" />
           <FruitList path= "fruits" />
-          <Redirect to= "/fruits" from= "/" />
+          <Redirect to= "/fruits" from= "/" noThrow />
         </Router>
       </div>
     </div>
